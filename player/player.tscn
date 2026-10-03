@@ -1,21 +1,16 @@
 [gd_scene format=3 uid="uid://cyavhuvlv7vap"]
 
 [ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/movement.gd" id="1_oul6g"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
-load_path = "res://.godot/imported/capsule_white_256x512.png-9c2afd8aad13c4c18f80b20aba36445a.ctex"
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ostoq"]
-radius = 12.0
-height = 38.0
+[ext_resource type="Texture2D" uid="uid://cawu3lpk7ybav" path="res://player/mainCharV1.png" id="2_rkbax"]
 
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 script = ExtResource("1_oul6g")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=905358701]
 texture_filter = 2
-scale = Vector2(0.09374999, 0.07492186)
-texture = SubResource("CompressedTexture2D_kqu6x")
+position = Vector2(2.3841858e-07, 0)
+scale = Vector2(0.16026331, 0.1365988)
+texture = ExtResource("2_rkbax")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=103827450]
-shape = SubResource("CapsuleShape2D_ostoq")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2023140496]
+polygon = PackedVector2Array(10, -77, -3, -77, -22, -52, -28, -26, -22, 14, -23, 73, 34, 68, 24, -13)

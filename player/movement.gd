@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var jump_str: float = -350.0
+@export var jump_str: float = -450.0
 @export var speed: float = 200.0
 @export var allowed_jumps: int = 2
 @export var terminal_velocity: float = 500.0
