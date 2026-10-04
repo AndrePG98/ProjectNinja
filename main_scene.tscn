@@ -15,7 +15,6 @@ speed = 250.0
 [node name="BasePlatform" parent="." unique_id=215182763 instance=ExtResource("2_2c62f")]
 position = Vector2(320.00003, 360)
 scale = Vector2(39.847427, -0.61662465)
-collision_layer = 2
 
 [node name="BasePlatform2" parent="." unique_id=204545298 instance=ExtResource("2_2c62f")]
 position = Vector2(4.7683716e-07, 184)

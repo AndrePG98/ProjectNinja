@@ -10,10 +10,16 @@ var screen_size: Vector2
 var current_jumps: int
 
 @onready var hook: Hook = $GrapplingHook
+@onready var ui: TextureProgressBar = $TextureProgressBar
 
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+
+
+func _process(_delta: float) -> void:
+	var time_left: float = hook.cooldown.time_left
+	ui.value = (time_left * ui.max_value) / hook.hook_cooldown
 
 
 func _physics_process(delta: float) -> void:
@@ -24,8 +30,8 @@ func _physics_process(delta: float) -> void:
 
 func handle_jump(delta: float) -> void:
 	if hook.attached:
-		var to_anchor: Vector2 = (hook.anchor_point - global_position)
-		var dir : Vector2 = to_anchor.normalized()
+		var to_anchor: Vector2 = hook.anchor_point - global_position
+		var dir: Vector2 = to_anchor.normalized()
 		var d: float = to_anchor.length()
 		var s: float = velocity.dot(dir)
 
@@ -46,6 +52,7 @@ func handle_jump(delta: float) -> void:
 			velocity.y += get_gravity().y * gravity_multiplier * delta
 
 	if jumped and current_jumps > 0:
+		hook.reset_hook()
 		current_jumps -= 1
 		velocity.y = jump_str
 

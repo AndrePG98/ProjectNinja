@@ -4,3 +4,6 @@
 
 [node name="GrapplingHook" type="Node2D" unique_id=1371142295]
 script = ExtResource("1_xa463")
+
+[node name="Cooldown" type="Timer" parent="." unique_id=353196864]
+one_shot = true
