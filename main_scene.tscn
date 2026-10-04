@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cd3wvdm5xl80h"]
 
 [ext_resource type="PackedScene" uid="uid://cyavhuvlv7vap" path="res://player/player.tscn" id="1_0f027"]
-[ext_resource type="PackedScene" uid="uid://j1gtngunhv0f" path="res://world/base_platform.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://j1gtngunhv0f" path="res://world/platform/base_platform.tscn" id="2_2c62f"]
 
 [node name="MainScene" type="Node2D" unique_id=1573385340]
 
@@ -15,6 +15,7 @@ speed = 250.0
 [node name="BasePlatform" parent="." unique_id=215182763 instance=ExtResource("2_2c62f")]
 position = Vector2(320.00003, 360)
 scale = Vector2(39.847427, -0.61662465)
+collision_layer = 2
 
 [node name="BasePlatform2" parent="." unique_id=204545298 instance=ExtResource("2_2c62f")]
 position = Vector2(4.7683716e-07, 184)
@@ -25,5 +26,5 @@ position = Vector2(639.99994, 184)
 scale = Vector2(0.7207986, 24.95867)
 
 [node name="BasePlatform4" parent="." unique_id=1962498380 instance=ExtResource("2_2c62f")]
-position = Vector2(504.00003, 256)
+position = Vector2(312, 24.000015)
 scale = Vector2(-7.7041516, 1.0501568)
