@@ -1,29 +1,28 @@
 [gd_scene format=3 uid="uid://cd3wvdm5xl80h"]
 
 [ext_resource type="PackedScene" uid="uid://cyavhuvlv7vap" path="res://player/player.tscn" id="1_0f027"]
-[ext_resource type="PackedScene" uid="uid://j1gtngunhv0f" path="res://world/base_platform.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://j1gtngunhv0f" path="res://world/platform/base_platform.tscn" id="2_2c62f"]
 
 [node name="MainScene" type="Node2D" unique_id=1573385340]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1786483409]
-position = Vector2(320, 181)
 
 [node name="Player" parent="." unique_id=2067381703 instance=ExtResource("1_0f027")]
-position = Vector2(312, 192)
+position = Vector2(-240, 88)
 speed = 250.0
 
 [node name="BasePlatform" parent="." unique_id=215182763 instance=ExtResource("2_2c62f")]
-position = Vector2(320.00003, 360)
+position = Vector2(0, 184)
 scale = Vector2(39.847427, -0.61662465)
 
 [node name="BasePlatform2" parent="." unique_id=204545298 instance=ExtResource("2_2c62f")]
-position = Vector2(4.7683716e-07, 184)
+position = Vector2(-319.99997, -15.999985)
 scale = Vector2(0.7207986, 24.95867)
 
 [node name="BasePlatform3" parent="." unique_id=1060726975 instance=ExtResource("2_2c62f")]
-position = Vector2(639.99994, 184)
+position = Vector2(320.00003, -7.9999847)
 scale = Vector2(0.7207986, 24.95867)
 
 [node name="BasePlatform4" parent="." unique_id=1962498380 instance=ExtResource("2_2c62f")]
-position = Vector2(504.00003, 256)
+position = Vector2(3.0517578e-05, -151.99998)
 scale = Vector2(-7.7041516, 1.0501568)
