@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cyavhuvlv7vap"]
 
 [ext_resource type="Script" path="res://player/movement.gd" id="1_oul6g"]
-[ext_resource type="Texture2D" path="res://player/mainCharV1.png" id="2_rkbax"]
+[ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/playerAnimations/playerIdleAnimation/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
 
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 script = ExtResource("1_oul6g")
