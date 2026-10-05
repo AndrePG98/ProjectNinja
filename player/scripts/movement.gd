@@ -3,6 +3,13 @@ extends CharacterBody2D
 enum States { IDLE, RUNNING, JUMPING, FALLING, HOOKING }
 const GROUNDED_STATES: Array[States] = [States.IDLE, States.RUNNING]
 const AIRBORNE_STATES: Array[States] = [States.JUMPING, States.FALLING]
+const STATE_ANIMATION_MAPPING: Dictionary[States, String] = {
+	States.RUNNING: "run",
+	States.JUMPING: "idle",
+	States.FALLING: "idle",
+	States.HOOKING: "idle",
+	States.IDLE: "idle"
+}
 
 @export var jump_str: float = -450.0
 @export var base_speed: float = 200.0
@@ -31,6 +38,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	handle_inputs()
 	set_next_state()
+	handle_animation()
 	handle_movement(delta)
 	move_and_slide()
 
@@ -71,6 +79,12 @@ func handle_movement(delta: float) -> void:
 			global_position += dir * (d - hook.rope_length)
 
 
+func handle_animation() -> void:
+	var animation_to_play: String = STATE_ANIMATION_MAPPING[state]
+	animated_sprite.flip_h = velocity.x < 0
+	animated_sprite.play(animation_to_play)
+
+
 func set_next_state() -> Array[States]:
 	var next_state: States = States.IDLE
 	var prev_state: States = state
@@ -89,21 +103,3 @@ func set_next_state() -> Array[States]:
 
 	state = next_state
 	return [prev_state, state]
-
-
-func get_state() -> String:
-	match state:
-		States.JUMPING:
-			return "Jumping"
-		States.RUNNING:
-			return "Running"
-		States.FALLING:
-			return "Falling"
-		States.HOOKING:
-			return "Hooking"
-		_:
-			return "Idle"
-
-
-func set_state(new_state: States) -> void:
-	state = new_state
