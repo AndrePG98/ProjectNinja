@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj1opqvy326t6"
-path="res://.godot/imported/Main_Ninja_Faint_Test0003.png-532e1614e58cabe78781e4673cb6b7a9.ctex"
+uid="uid://b7t3r2u5obwos"
+path="res://.godot/imported/Main_Ninja_Faint_Test0001.png-8abc22ed347956a1a5469f11e87c804a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player_Animations/Player_Faint_Animation/Main_Ninja_Faint_Test0003.png"
-dest_files=["res://.godot/imported/Main_Ninja_Faint_Test0003.png-532e1614e58cabe78781e4673cb6b7a9.ctex"]
+source_file="res://assets/playerAnimations/playerFaintAnimation/Main_Ninja_Faint_Test0001.png"
+dest_files=["res://.godot/imported/Main_Ninja_Faint_Test0001.png-8abc22ed347956a1a5469f11e87c804a.ctex"]
 
 [params]
 
