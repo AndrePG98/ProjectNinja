@@ -1,20 +1,26 @@
 extends CharacterBody2D
 
+enum States { IDLE, RUNNING, JUMPING, FALLING, HOOKING }
+const GROUNDED_STATES: Array[States] = [States.IDLE, States.RUNNING]
+const AIRBORNE_STATES: Array[States] = [States.JUMPING, States.FALLING]
+
 @export var jump_str: float = -450.0
-@export var speed: float = 200.0
-@export var allowed_jumps: int = 2
+@export var base_speed: float = 200.0
+@export_range(0, 1, 0.1) var air_speed_modifier: float = 0.5
+@export var swing_force: float = 500.0
+@export var allowed_jumps: int = 1
 @export var terminal_velocity: float = 500.0
 @export var gravity_multiplier: float = 1.3
 
-var screen_size: Vector2
-var current_jumps: int
+var current_allowed_jumps: int
+var state: States = States.IDLE
+var move_direction: float = 0.0
+var is_jumping: bool = false
+var is_hooking: bool = false
 
 @onready var hook: Hook = $GrapplingHook
 @onready var ui: TextureProgressBar = $HookCooldownIndicator
-
-
-func _ready() -> void:
-	screen_size = get_viewport_rect().size
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _process(_delta: float) -> void:
@@ -23,12 +29,36 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	handle_movement()
-	handle_jump(delta)
+	handle_inputs()
+	set_next_state()
+	handle_movement(delta)
 	move_and_slide()
 
 
-func handle_jump(delta: float) -> void:
+func handle_inputs() -> void:
+	move_direction = Input.get_axis("left", "right")
+	is_hooking = Input.is_action_just_pressed("interact")
+	is_jumping = Input.is_action_just_pressed("up") and current_allowed_jumps > 0
+
+
+func handle_movement(delta: float) -> void:
+	var speed: float = base_speed
+
+	if is_on_floor():
+		current_allowed_jumps = allowed_jumps
+	else:
+		speed *= air_speed_modifier
+		velocity.y += get_gravity().y * gravity_multiplier * delta
+
+	if is_jumping:
+		current_allowed_jumps -= 1
+		velocity.y = jump_str
+
+	if hook.attached and not is_on_floor():
+		velocity.x += move_direction * swing_force * delta
+	else:
+		velocity.x = signf(move_direction) * speed
+
 	if hook.attached:
 		var to_anchor: Vector2 = hook.anchor_point - global_position
 		var dir: Vector2 = to_anchor.normalized()
@@ -40,23 +70,40 @@ func handle_jump(delta: float) -> void:
 				velocity -= dir * s
 			global_position += dir * (d - hook.rope_length)
 
-	var jumped: bool = Input.is_action_just_pressed("up")
 
-	if is_on_floor():
-		current_jumps = allowed_jumps
+func set_next_state() -> Array[States]:
+	var next_state: States = States.IDLE
+	var prev_state: States = state
 
-	if not is_on_floor():
-		if velocity.y > terminal_velocity:
-			velocity.y = terminal_velocity
-		else:
-			velocity.y += get_gravity().y * gravity_multiplier * delta
+	if is_hooking:
+		next_state = States.HOOKING
 
-	if jumped and current_jumps > 0:
-		hook.reset_hook()
-		current_jumps -= 1
-		velocity.y = jump_str
+	elif is_jumping:
+		next_state = States.JUMPING
+
+	elif not is_on_floor() and velocity.y >= 0.0:
+		next_state = States.FALLING
+
+	elif is_on_floor() and move_direction != 0.0:
+		next_state = States.RUNNING
+
+	state = next_state
+	return [prev_state, state]
 
 
-func handle_movement() -> void:
-	var direction: float = Input.get_axis("left", "right")
-	velocity.x = signf(direction) * speed
+func get_state() -> String:
+	match state:
+		States.JUMPING:
+			return "Jumping"
+		States.RUNNING:
+			return "Running"
+		States.FALLING:
+			return "Falling"
+		States.HOOKING:
+			return "Hooking"
+		_:
+			return "Idle"
+
+
+func set_state(new_state: States) -> void:
+	state = new_state

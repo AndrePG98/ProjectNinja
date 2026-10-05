@@ -3,7 +3,12 @@
 [ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/scripts/movement.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/animations/player/idle/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
 [ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://player/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://luo7t3f0f08e" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0000.png" id="3_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://curi2yttbcstv" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0001.png" id="4_8t03j"]
 [ext_resource type="Texture2D" uid="uid://bc8nea13lcfoo" path="res://assets/animations/player/run/texture.png" id="4_yw30f"]
+[ext_resource type="Texture2D" uid="uid://cvbpeo3rdf6wk" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0002.png" id="5_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://b8kkmej1pnp24" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0003.png" id="6_ebec5"]
+[ext_resource type="Texture2D" uid="uid://c5g6nx4wph781" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0004.png" id="7_yllr7"]
 
 [sub_resource type="Gradient" id="Gradient_g1dw6"]
 offsets = PackedFloat32Array(0.27751195, 0.3875598)
@@ -51,7 +56,22 @@ region = Rect2(10752, 0, 1536, 1536)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ostoq"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hg6s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8t03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2ieo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ebec5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yllr7")
+}],
 "loop": 1,
 "name": &"faint",
 "speed": 5.0
@@ -94,25 +114,29 @@ animations = [{
 "speed": 11.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ostoq"]
+size = Vector2(310, 1090)
+
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 collision_mask = 2
 script = ExtResource("1_rkbax")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2023140496]
-polygon = PackedVector2Array(10, -77, -3, -77, -22, -52, -28, -26, -22, 14, -23, 73, 34, 68, 24, -13)
 
 [node name="GrapplingHook" parent="." unique_id=1371142295 instance=ExtResource("3_g1dw6")]
 position = Vector2(3, -79)
 
 [node name="HookCooldownIndicator" type="TextureProgressBar" parent="." unique_id=1079018017]
-offset_left = 4.0
-offset_top = -96.0
-offset_right = 36.0
-offset_bottom = -64.0
+offset_left = 200.99998
+offset_top = -565.00006
+offset_right = 232.99998
+offset_bottom = -533.00006
+scale = Vector2(4.2091203, 3.6867182)
 fill_mode = 4
 texture_progress = SubResource("GradientTexture2D_g1dw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=765341242]
 sprite_frames = SubResource("SpriteFrames_ostoq")
 animation = &"run"
-frame_progress = 0.73140544
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1439486218]
+position = Vector2(8, -22)
+shape = SubResource("RectangleShape2D_ostoq")

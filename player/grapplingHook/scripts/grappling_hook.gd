@@ -1,6 +1,6 @@
 class_name Hook extends Node2D
 
-@export var hook_length: float = 300.0
+@export var hook_length: float = 200.0
 @export var hook_cooldown: float = 1.0
 
 var hooked: bool = false
@@ -29,6 +29,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if attached:
+		cooldown.start(hook_cooldown)
 		reset_hook()
 		queue_redraw()
 		return
@@ -46,13 +47,16 @@ func _physics_process(_delta: float) -> void:
 	var query: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from, to, 2)
 
 	var result: Dictionary = space_state.intersect_ray(query)
-	if not result.is_empty():
-		attached = true
-		anchor_point = result.position
-		rope_length = (anchor_point - from).length()
 
+	if result.is_empty():
+		cooldown.start(hook_cooldown)
+		queue_redraw()
+		return
+
+	attached = true
+	anchor_point = result.position
+	rope_length = (anchor_point - from).length()
 	queue_redraw()
-	cooldown.start(hook_cooldown)
 
 
 func reset_hook() -> void:
