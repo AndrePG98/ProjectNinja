@@ -10,7 +10,7 @@ var screen_size: Vector2
 var current_jumps: int
 
 @onready var hook: Hook = $GrapplingHook
-@onready var ui: TextureProgressBar = $TextureProgressBar
+@onready var ui: TextureProgressBar = $HookCooldownIndicator
 
 
 func _ready() -> void:

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://curi2yttbcstv"
-path="res://.godot/imported/Main_Ninja_Faint_Test0001.png-8abc22ed347956a1a5469f11e87c804a.ctex"
+path="res://.godot/imported/Main_Ninja_Faint_Test0001.png-d9b35e02f2c538324add106a1b3b82d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/playerAnimations/playerFaintAnimation/Main_Ninja_Faint_Test0001.png"
-dest_files=["res://.godot/imported/Main_Ninja_Faint_Test0001.png-8abc22ed347956a1a5469f11e87c804a.ctex"]
+source_file="res://assets/animations/player/faint/Main_Ninja_Faint_Test0001.png"
+dest_files=["res://.godot/imported/Main_Ninja_Faint_Test0001.png-d9b35e02f2c538324add106a1b3b82d4.ctex"]
 
 [params]
 

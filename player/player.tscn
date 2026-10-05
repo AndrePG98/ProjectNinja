@@ -1,10 +1,24 @@
 [gd_scene format=3 uid="uid://cyavhuvlv7vap"]
 
-[ext_resource type="Script" path="res://player/movement.gd" id="1_oul6g"]
-[ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/playerAnimations/playerIdleAnimation/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/scripts/movement.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/animations/player/idle/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
+[ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://player/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
+
+[sub_resource type="Gradient" id="Gradient_g1dw6"]
+offsets = PackedFloat32Array(0.27751195, 0.3875598)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1dw6"]
+gradient = SubResource("Gradient_g1dw6")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
-script = ExtResource("1_oul6g")
+collision_mask = 2
+script = ExtResource("1_rkbax")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=905358701]
 texture_filter = 2
@@ -14,3 +28,14 @@ texture = ExtResource("2_rkbax")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2023140496]
 polygon = PackedVector2Array(10, -77, -3, -77, -22, -52, -28, -26, -22, 14, -23, 73, 34, 68, 24, -13)
+
+[node name="GrapplingHook" parent="." unique_id=1371142295 instance=ExtResource("3_g1dw6")]
+position = Vector2(3, -79)
+
+[node name="HookCooldownIndicator" type="TextureProgressBar" parent="." unique_id=1079018017]
+offset_left = 4.0
+offset_top = -96.0
+offset_right = 36.0
+offset_bottom = -64.0
+fill_mode = 4
+texture_progress = SubResource("GradientTexture2D_g1dw6")
