@@ -3,13 +3,7 @@
 [ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/movement.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://cawu3lpk7ybav" path="res://player/mainCharV1.png" id="2_rkbax"]
 [ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://player/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
-
-[sub_resource type="Gradient" id="Gradient_g1dw6"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qjkh3"]
-gradient = SubResource("Gradient_g1dw6")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ostoq"]
+[ext_resource type="Texture2D" uid="uid://bqd0xk7ieyvpp" path="res://player/grapplingHook/circle.tres" id="4_yw30f"]
 
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 collision_mask = 2
@@ -25,21 +19,20 @@ texture = ExtResource("2_rkbax")
 polygon = PackedVector2Array(10, -77, -3, -77, -22, -52, -28, -26, -22, 14, -23, 73, 34, 68, 24, -13)
 
 [node name="GrapplingHook" parent="." unique_id=1467408433 instance=ExtResource("3_g1dw6")]
+position = Vector2(3.0000038, -80)
+rotation = 3.906698
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=2068024303]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 19.000008
-offset_top = -92.00001
+offset_left = 19.000006
+offset_top = -91.000015
 offset_right = 83.00001
-offset_bottom = -28.000008
+offset_bottom = -27.000015
 grow_horizontal = 0
 scale = Vector2(0.21547814, 0.19435218)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 fill_mode = 4
-texture_progress = SubResource("GradientTexture2D_qjkh3")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1577790934]
-sprite_frames = SubResource("SpriteFrames_ostoq")
+texture_progress = ExtResource("4_yw30f")

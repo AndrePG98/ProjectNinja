@@ -1,6 +1,6 @@
 class_name Hook extends Node2D
 
-@export var hook_length: float = 200.0
+@export var hook_length: float = 300.0
 @export var hook_cooldown: float = 1.0
 
 var hooked: bool = false
@@ -14,11 +14,11 @@ var to: Vector2 = Vector2.ZERO
 
 func _draw() -> void:
 	if anchor_point:
-		draw_line(position, to_local(anchor_point), Color.RED, 2.0)
+		draw_line(global_position, anchor_point, Color.RED, 2.0)
 		return
 
 	if to:
-		draw_line(position, to_local(to), Color.RED, 2.0)
+		draw_line(global_position, to, Color.RED, 2.0)
 
 
 func _physics_process(_delta: float) -> void:
@@ -27,7 +27,6 @@ func _physics_process(_delta: float) -> void:
 		queue_redraw()
 		return
 
-	# Reset
 	if attached:
 		reset_hook()
 		queue_redraw()

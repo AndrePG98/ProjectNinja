@@ -9,7 +9,7 @@
 position = Vector2(320, 181)
 
 [node name="Player" parent="." unique_id=2067381703 instance=ExtResource("1_0f027")]
-position = Vector2(312, 192)
+position = Vector2(320, 192)
 speed = 250.0
 
 [node name="BasePlatform" parent="." unique_id=215182763 instance=ExtResource("2_2c62f")]
