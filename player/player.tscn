@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/scripts/movement.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/animations/player/idle/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
 [ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://player/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://bc8nea13lcfoo" path="res://assets/animations/player/run/texture.png" id="4_yw30f"]
 
 [sub_resource type="Gradient" id="Gradient_g1dw6"]
 offsets = PackedFloat32Array(0.27751195, 0.3875598)
@@ -16,15 +17,86 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(0, 0, 1536, 1536)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjkh3"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(1536, 0, 1536, 1536)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(3072, 0, 1536, 1536)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(4608, 0, 1536, 1536)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgyib"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(6144, 0, 1536, 1536)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(7680, 0, 1536, 1536)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(9216, 0, 1536, 1536)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("4_yw30f")
+region = Rect2(10752, 0, 1536, 1536)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ostoq"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"faint",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rkbax")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw30f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjkh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6k8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boad6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgyib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg6s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ieo8")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 11.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 collision_mask = 2
 script = ExtResource("1_rkbax")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=905358701]
-texture_filter = 2
-position = Vector2(2.3841858e-07, 0)
-scale = Vector2(0.16026331, 0.1365988)
-texture = ExtResource("2_rkbax")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2023140496]
 polygon = PackedVector2Array(10, -77, -3, -77, -22, -52, -28, -26, -22, 14, -23, 73, 34, 68, 24, -13)
@@ -39,3 +111,8 @@ offset_right = 36.0
 offset_bottom = -64.0
 fill_mode = 4
 texture_progress = SubResource("GradientTexture2D_g1dw6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=765341242]
+sprite_frames = SubResource("SpriteFrames_ostoq")
+animation = &"run"
+frame_progress = 0.73140544
