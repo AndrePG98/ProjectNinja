@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cyavhuvlv7vap"]
 
-[ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/movement.gd" id="1_oul6g"]
-[ext_resource type="Texture2D" uid="uid://cawu3lpk7ybav" path="res://player/mainCharV1.png" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/scripts/movement.gd" id="1_oul6g"]
+[ext_resource type="Texture2D" uid="uid://dl5f57bi5g35w" path="res://Assets/Player_Animations/Player_Idle_Animation/Main_Ninja_Idle_Test0000.png" id="2_yw30f"]
 [ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://player/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
-[ext_resource type="Texture2D" uid="uid://bqd0xk7ieyvpp" path="res://player/grapplingHook/circle.tres" id="4_yw30f"]
+[ext_resource type="Texture2D" uid="uid://bqd0xk7ieyvpp" path="res://Assets/textures/circle.tres" id="4_yw30f"]
 
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 collision_mask = 2
@@ -13,13 +13,13 @@ script = ExtResource("1_oul6g")
 texture_filter = 2
 position = Vector2(2.3841858e-07, 0)
 scale = Vector2(0.16026331, 0.1365988)
-texture = ExtResource("2_rkbax")
+texture = ExtResource("2_yw30f")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2023140496]
 polygon = PackedVector2Array(10, -77, -3, -77, -22, -52, -28, -26, -22, 14, -23, 73, 34, 68, 24, -13)
 
 [node name="GrapplingHook" parent="." unique_id=1467408433 instance=ExtResource("3_g1dw6")]
-position = Vector2(3.0000038, -80)
+position = Vector2(0, -79)
 rotation = 3.906698
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=2068024303]

@@ -13,12 +13,13 @@ var to: Vector2 = Vector2.ZERO
 
 
 func _draw() -> void:
+	var local_pos: Vector2 = to_local(global_position)
 	if anchor_point:
-		draw_line(global_position, anchor_point, Color.RED, 2.0)
+		draw_line(local_pos, to_local(anchor_point), Color.RED, 2.0)
 		return
 
 	if to:
-		draw_line(global_position, to, Color.RED, 2.0)
+		draw_line(local_pos, to_local(to), Color.RED, 2.0)
 
 
 func _physics_process(_delta: float) -> void:
