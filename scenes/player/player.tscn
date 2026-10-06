@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cyavhuvlv7vap"]
 
-[ext_resource type="Script" uid="uid://br21rioi152q2" path="res://player/scripts/movement.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://br21rioi152q2" path="res://scenes/player/scripts/movement.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/animations/player/idle/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
-[ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://player/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://scenes/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://luo7t3f0f08e" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0000.png" id="3_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://curi2yttbcstv" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0001.png" id="4_8t03j"]
 [ext_resource type="Texture2D" uid="uid://bc8nea13lcfoo" path="res://assets/animations/player/run/texture.png" id="4_yw30f"]
