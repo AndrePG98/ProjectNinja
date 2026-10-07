@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://b1pej43y7k8jc"]
-
-[ext_resource type="Script" uid="uid://cs6t5ls764lhj" path="res://scenes/grapplingHook/scripts/grappling_hook.gd" id="1_xa463"]
-
-[node name="GrapplingHook" type="Node2D" unique_id=1371142295]
-script = ExtResource("1_xa463")
-
-[node name="Cooldown" type="Timer" parent="." unique_id=353196864]
-one_shot = true

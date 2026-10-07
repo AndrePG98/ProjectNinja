@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://cyavhuvlv7vap"]
 
-[ext_resource type="Script" uid="uid://br21rioi152q2" path="res://scenes/player/scripts/movement.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://bb4oxfdiyxfy8" path="res://scripts/entity/player/player.gd" id="1_ugbui"]
 [ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/animations/player/idle/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
-[ext_resource type="PackedScene" uid="uid://b1pej43y7k8jc" path="res://scenes/grapplingHook/grappling_hook.tscn" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://luo7t3f0f08e" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0000.png" id="3_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://curi2yttbcstv" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0001.png" id="4_8t03j"]
 [ext_resource type="Texture2D" uid="uid://bc8nea13lcfoo" path="res://assets/animations/player/run/texture.png" id="4_yw30f"]
 [ext_resource type="Texture2D" uid="uid://cvbpeo3rdf6wk" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0002.png" id="5_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://b8kkmej1pnp24" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0003.png" id="6_ebec5"]
 [ext_resource type="Texture2D" uid="uid://c5g6nx4wph781" path="res://assets/animations/player/faint/Main_Ninja_Faint_Test0004.png" id="7_yllr7"]
+[ext_resource type="Script" uid="uid://cs6t5ls764lhj" path="res://scripts/hook/hook.gd" id="8_qek5x"]
+[ext_resource type="Script" uid="uid://blb5nlsdfremr" path="res://scripts/entity/player/input.gd" id="9_h17s1"]
+[ext_resource type="Script" uid="uid://dy2brmny6pe65" path="res://scripts/entity/player/movement.gd" id="10_h17s1"]
+[ext_resource type="Resource" uid="uid://ci7078qlaxv0j" path="res://scenes/player/movement_stats.tres" id="11_gx1jg"]
+[ext_resource type="Script" uid="uid://c4l6w6frcu66j" path="res://scripts/entity/state_machine.gd" id="11_je7p5"]
+[ext_resource type="Script" uid="uid://b5r5mwh70a2vs" path="res://scripts/entity/player/animation.gd" id="12_fm80t"]
 
 [sub_resource type="Gradient" id="Gradient_g1dw6"]
 offsets = PackedFloat32Array(0.27751195, 0.3875598)
@@ -119,10 +124,7 @@ size = Vector2(310, 1090)
 
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 collision_mask = 2
-script = ExtResource("1_rkbax")
-
-[node name="GrapplingHook" parent="." unique_id=1371142295 instance=ExtResource("3_g1dw6")]
-position = Vector2(3, -79)
+script = ExtResource("1_ugbui")
 
 [node name="HookCooldownIndicator" type="TextureProgressBar" parent="." unique_id=1079018017]
 offset_left = 200.99998
@@ -140,3 +142,28 @@ animation = &"run"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1439486218]
 position = Vector2(8, -22)
 shape = SubResource("RectangleShape2D_ostoq")
+
+[node name="Hook" type="Node2D" parent="." unique_id=626485559]
+script = ExtResource("8_qek5x")
+metadata/_custom_type_script = "uid://cs6t5ls764lhj"
+
+[node name="PlayerInput" type="Node" parent="." unique_id=226713491]
+script = ExtResource("9_h17s1")
+metadata/_custom_type_script = "uid://blb5nlsdfremr"
+
+[node name="Movement" type="Node" parent="." unique_id=488356146 node_paths=PackedStringArray("body")]
+script = ExtResource("10_h17s1")
+body = NodePath("..")
+stats = ExtResource("11_gx1jg")
+metadata/_custom_type_script = "uid://dy2brmny6pe65"
+
+[node name="StateMachine" type="Node" parent="." unique_id=1372125320]
+script = ExtResource("11_je7p5")
+metadata/_custom_type_script = "uid://c4l6w6frcu66j"
+
+[node name="PlayerAnimation" type="Node" parent="." unique_id=1999183006 node_paths=PackedStringArray("state_machine", "sprite", "body")]
+script = ExtResource("12_fm80t")
+state_machine = NodePath("../StateMachine")
+sprite = NodePath("../AnimatedSprite2D")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://b5r5mwh70a2vs"
