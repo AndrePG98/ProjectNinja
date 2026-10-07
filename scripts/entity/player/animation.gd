@@ -2,9 +2,10 @@ class_name PlayerAnimation extends Node
 
 const STATE_ANIMATION_MAPPING: Dictionary[States.State, String] = {
 	States.State.RUNNING: "run",
-	States.State.JUMPING: "idle",
+	States.State.JUMPING: "jump",
 	States.State.FALLING: "idle",
 	States.State.HOOKING: "idle",
+	States.State.DEAD: "faint",
 	States.State.IDLE: "idle"
 }
 
