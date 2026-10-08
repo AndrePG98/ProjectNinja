@@ -10,16 +10,18 @@ func _physics_process(delta: float) -> void:
 	input.poll()
 	hook.tick(input.hook_pressed, get_global_mouse_position())
 
-	var swing_force: float = hook.swing_force if hook.attached and not is_on_floor() else 0.0
+	var swinging: bool = hook.attached and not is_on_floor()
 
-	if hook.attached and not is_on_floor():
+	if swinging and input.jump_pressed:
+		hook.release()
+		movement.remaining_jumps = 1
+		swinging = false
+	elif swinging:
 		movement.remaining_jumps = 1
 
+	var swing_force: float = hook.swing_force if swinging else 0.0
 	movement.tick(delta, self, input.move_direction, swing_force, input.jump_pressed)
 	hook.constraint(self)
-
-	if hook.attached && input.jump_pressed && velocity.y < 0.0:
-		hook._release()
 
 	move_and_slide()
 	_update_state()

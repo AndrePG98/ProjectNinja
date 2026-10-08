@@ -26,12 +26,19 @@ func tick(fire_pressed: bool, aim_target: Vector2) -> void:
 		return
 
 	if attached:
-		_release()
+		release()
 		queue_redraw()
 		return
 
 	_try_attach(aim_target)
 	queue_redraw()
+
+
+func release() -> void:
+	attached = false
+	anchor_point = Vector2.ZERO
+	rope_length = 0
+	timer.start(hook_cooldown)
 
 
 func constraint(body: CharacterBody2D) -> void:
@@ -67,13 +74,6 @@ func _try_attach(aim_target: Vector2) -> void:
 	attached = true
 	anchor_point = result.position
 	rope_length = (anchor_point - from).length()
-
-
-func _release() -> void:
-	attached = false
-	anchor_point = Vector2.ZERO
-	rope_length = 0
-	timer.start(hook_cooldown)
 
 
 func _draw() -> void:
