@@ -6,12 +6,11 @@ var remaining_jumps: int
 
 
 func tick(
-	delta: float, body: CharacterBody2D, direction: float, jumped: bool, momentum: float
+	delta: float, body: CharacterBody2D, direction: float, momentum: float, jumped: bool
 ) -> void:
 	_reset_jumps(body)
 	_apply_gravity(delta, body)
 	_handle_jump(jumped, body)
-
 	_handle_movement(delta, signf(direction), momentum, body)
 
 

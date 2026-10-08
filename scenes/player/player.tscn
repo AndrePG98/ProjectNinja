@@ -11,18 +11,8 @@
 [ext_resource type="Resource" uid="uid://ci7078qlaxv0j" path="res://scenes/player/movement_stats.tres" id="11_gx1jg"]
 [ext_resource type="Script" uid="uid://c4l6w6frcu66j" path="res://scripts/entity/state_machine.gd" id="11_je7p5"]
 [ext_resource type="Script" uid="uid://b5r5mwh70a2vs" path="res://scripts/entity/player/animation.gd" id="12_fm80t"]
-
-[sub_resource type="Gradient" id="Gradient_g1dw6"]
-offsets = PackedFloat32Array(0.27751195, 0.3875598)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1dw6"]
-gradient = SubResource("Gradient_g1dw6")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
+[ext_resource type="Texture2D" uid="uid://byfqm8xq8wvog" path="res://assets/textures/cd_circle_texture.tres" id="12_gx1jg"]
+[ext_resource type="Script" uid="uid://cufpnkp13f0si" path="res://scripts/hook/hook_cooldown_indicator.gd" id="13_ugbui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
 atlas = ExtResource("2_je7p5")
@@ -155,19 +145,9 @@ size = Vector2(310, 1090)
 collision_mask = 2
 script = ExtResource("1_ugbui")
 
-[node name="HookCooldownIndicator" type="TextureProgressBar" parent="." unique_id=1079018017]
-offset_left = 200.99998
-offset_top = -565.00006
-offset_right = 232.99998
-offset_bottom = -533.00006
-scale = Vector2(4.2091203, 3.6867182)
-fill_mode = 4
-texture_progress = SubResource("GradientTexture2D_g1dw6")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=765341242]
 sprite_frames = SubResource("SpriteFrames_ostoq")
-animation = &"faint"
-frame_progress = 0.41124764
+animation = &"idle"
 speed_scale = 1.2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1816891622]
@@ -200,3 +180,14 @@ state_machine = NodePath("../StateMachine")
 sprite = NodePath("../AnimatedSprite2D")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://b5r5mwh70a2vs"
+
+[node name="CooldownIndicator" type="TextureProgressBar" parent="." unique_id=205704722 node_paths=PackedStringArray("hook")]
+offset_left = 130.0
+offset_top = -591.0
+offset_right = 194.0
+offset_bottom = -527.0
+fill_mode = 4
+texture_progress = ExtResource("12_gx1jg")
+script = ExtResource("13_ugbui")
+hook = NodePath("../Hook")
+metadata/_custom_type_script = "uid://cufpnkp13f0si"
