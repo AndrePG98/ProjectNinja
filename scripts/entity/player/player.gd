@@ -12,12 +12,11 @@ func _physics_process(delta: float) -> void:
 
 	var swinging: bool = hook.attached and not is_on_floor()
 
-	if swinging and input.jump_pressed:
-		hook.release()
+	if swinging:
 		movement.remaining_jumps = 1
-		swinging = false
-	elif swinging:
-		movement.remaining_jumps = 1
+		if input.jump_pressed:
+			hook.release()
+			swinging = false
 
 	var swing_force: float = hook.swing_force if swinging else 0.0
 	movement.tick(delta, self, input.move_direction, swing_force, input.jump_pressed)
