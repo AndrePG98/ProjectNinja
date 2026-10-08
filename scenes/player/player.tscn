@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://b5r5mwh70a2vs" path="res://scripts/entity/player/animation.gd" id="12_fm80t"]
 [ext_resource type="Texture2D" uid="uid://byfqm8xq8wvog" path="res://assets/textures/cd_circle_texture.tres" id="12_gx1jg"]
 [ext_resource type="Script" uid="uid://cufpnkp13f0si" path="res://scripts/hook/hook_cooldown_indicator.gd" id="13_ugbui"]
+[ext_resource type="Script" uid="uid://c2pph5830qsxj" path="res://scripts/entity/health.gd" id="14_ugbui"]
+[ext_resource type="Script" uid="uid://bq00yw3qjxx87" path="res://scripts/entity/hurtbox.gd" id="15_fcs02"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
 atlas = ExtResource("2_je7p5")
@@ -141,6 +143,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ostoq"]
 size = Vector2(310, 1090)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajtct"]
+size = Vector2(309, 1091)
+
 [node name="Player" type="CharacterBody2D" unique_id=2067381703]
 collision_mask = 2
 script = ExtResource("1_ugbui")
@@ -152,10 +157,6 @@ speed_scale = 1.2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1816891622]
 root_node = NodePath("../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1439486218]
-position = Vector2(8, -22)
-shape = SubResource("RectangleShape2D_ostoq")
 
 [node name="Hook" type="Node2D" parent="." unique_id=626485559]
 script = ExtResource("8_qek5x")
@@ -191,3 +192,21 @@ texture_progress = ExtResource("12_gx1jg")
 script = ExtResource("13_ugbui")
 hook = NodePath("../Hook")
 metadata/_custom_type_script = "uid://cufpnkp13f0si"
+
+[node name="Health" type="Node2D" parent="." unique_id=1091135878]
+script = ExtResource("14_ugbui")
+metadata/_custom_type_script = "uid://c2pph5830qsxj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1439486218]
+position = Vector2(8, -22)
+shape = SubResource("RectangleShape2D_ostoq")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2089832453]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("15_fcs02")
+metadata/_custom_type_script = "uid://bq00yw3qjxx87"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1675592585]
+position = Vector2(10.5, -21.5)
+shape = SubResource("RectangleShape2D_ajtct")
