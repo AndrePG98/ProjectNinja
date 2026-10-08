@@ -6,26 +6,55 @@ var remaining_jumps: int
 
 
 func tick(
-	delta: float,
-	body: CharacterBody2D,
-	direction: float,
-	jumped: bool,
-	velocity_modifier: float = 0.0
+	delta: float, body: CharacterBody2D, direction: float, jumped: bool, momentum: float
 ) -> void:
-	var speed: float = stats.base_speed
+	_reset_jumps(body)
+	_apply_gravity(delta, body)
+	_handle_jump(jumped, body)
 
+	_handle_movement(delta, signf(direction), momentum, body)
+
+
+func _handle_movement(
+	delta: float, direction: float, momentum: float, body: CharacterBody2D
+) -> void:
 	if body.is_on_floor():
-		remaining_jumps = stats.total_jumps
-	else:
-		speed *= stats.air_speed_modifier
-		body.velocity.y += body.get_gravity().y * stats.gravity_multiplier * delta
-		body.velocity.y = minf(body.velocity.y, stats.terminal_velocity)
+		body.velocity.x = direction * stats.base_speed
+		return
 
-	if jumped and remaining_jumps > 0:
-		remaining_jumps -= 1
-		body.velocity.y = stats.jump_str
+	if momentum > 0.0:
+		body.velocity.x += direction * momentum * delta
+		return
 
-	if velocity_modifier > 0.0:
-		body.velocity.x += direction * velocity_modifier * delta
-	else:
-		body.velocity.x = signf(direction) * speed
+	var air_target: float = direction * stats.base_speed * stats.air_speed_modifier
+
+	# If current speed > input speed and the same direction
+	var overspeed: bool = (
+		absf(body.velocity.x) > absf(air_target) and signf(body.velocity.x) == signf(air_target)
+	)
+
+	var rate: float = stats.air_drag if (direction == 0.0 or overspeed) else stats.air_accel
+	body.velocity.x = move_toward(body.velocity.x, air_target, rate * delta)
+
+
+func _handle_jump(jumped: bool, body: CharacterBody2D) -> void:
+	if not jumped or remaining_jumps <= 0:
+		return
+
+	remaining_jumps -= 1
+	body.velocity.y = stats.jump_str
+
+
+func _reset_jumps(body: CharacterBody2D) -> void:
+	if not body.is_on_floor():
+		return
+
+	remaining_jumps = stats.total_jumps
+
+
+func _apply_gravity(delta: float, body: CharacterBody2D) -> void:
+	if body.is_on_floor():
+		return
+
+	body.velocity.y += body.get_gravity().y * stats.gravity_multiplier * delta
+	body.velocity.y = minf(body.velocity.y, stats.terminal_velocity)
