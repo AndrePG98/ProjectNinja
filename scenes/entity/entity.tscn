@@ -13,7 +13,7 @@ script = ExtResource("4_acqig")
 metadata/_custom_type_script = "uid://du0fbi5u1kt2r"
 
 [node name="Entity" type="CharacterBody2D" unique_id=1821763107]
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_t6or0")
 metadata/_custom_type_script = "uid://d4he3wu5iyamd"
 

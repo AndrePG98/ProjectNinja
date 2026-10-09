@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://j1gtngunhv0f" path="res://scenes/world/platform/base_platform.tscn" id="1_pw63i"]
 [ext_resource type="PackedScene" uid="uid://b0fpfdsna7wad" path="res://scenes/player/player.tscn" id="2_pw63i"]
+[ext_resource type="PackedScene" uid="uid://bter6icst3att" path="res://scenes/enemies/oni.tscn" id="3_7ykc4"]
 
 [node name="MainScene" type="Node2D" unique_id=1573385340]
 
@@ -28,6 +29,12 @@ scale = Vector2(-7.7041516, 1.0501568)
 [node name="Player" parent="." unique_id=1821763107 instance=ExtResource("2_pw63i")]
 position = Vector2(-262.99997, 116.99999)
 scale = Vector2(0.1, 0.1)
+collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1786483409]
 position = Vector2(-0.00030517575, -559.9999)
+
+[node name="Entity" parent="." unique_id=901539569 instance=ExtResource("3_7ykc4")]
+position = Vector2(132.00002, 113.99999)
+scale = Vector2(0.1, 0.1)
+collision_mask = 3

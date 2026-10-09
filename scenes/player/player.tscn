@@ -9,6 +9,12 @@
 [ext_resource type="Script" uid="uid://cs6t5ls764lhj" path="res://scripts/hook/hook.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://blb5nlsdfremr" path="res://scripts/player/player_controller.gd" id="9_h17s1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p47bc"]
+size = Vector2(335, 1064)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ydkj"]
+size = Vector2(335, 1064)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
 atlas = ExtResource("2_je7p5")
 region = Rect2(0, 0, 1536, 1536)
@@ -137,37 +143,34 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p47bc"]
-size = Vector2(335, 1064)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ydkj"]
-size = Vector2(335, 1064)
-
 [node name="Entity" unique_id=1821763107 node_paths=PackedStringArray("controller") instance=ExtResource("1_p47bc")]
 script = ExtResource("1_ugbui")
 controller = NodePath("PlayerController")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0" unique_id=1648979839]
-sprite_frames = SubResource("SpriteFrames_ostoq")
-animation = &"idle"
+[node name="Health" parent="." index="2" unique_id=195962182]
+total_health = 5
 
-[node name="Animator" parent="." index="4" unique_id=25410526 node_paths=PackedStringArray("sprite")]
+[node name="Animator" parent="." index="3" unique_id=25410526 node_paths=PackedStringArray("sprite")]
 sprite = NodePath("../AnimatedSprite2D")
 
-[node name="Hurtbox" parent="." index="5" unique_id=1494815632]
+[node name="Hurtbox" parent="." index="4" unique_id=1494815632]
 faction = 0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1915405303]
 position = Vector2(-3.5, -34)
 shape = SubResource("RectangleShape2D_p47bc")
 
-[node name="CollisionShape2D" parent="." index="6" unique_id=874322528]
+[node name="CollisionShape2D" parent="." index="5" unique_id=874322528]
 position = Vector2(-3.5, -34)
 shape = SubResource("RectangleShape2D_8ydkj")
 
-[node name="PlayerController" type="Node" parent="." index="7" unique_id=1219836128]
+[node name="PlayerController" type="Node" parent="." index="6" unique_id=1219836128]
 script = ExtResource("9_h17s1")
 metadata/_custom_type_script = "uid://blb5nlsdfremr"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="7" unique_id=1648979839]
+sprite_frames = SubResource("SpriteFrames_ostoq")
+animation = &"idle"
 
 [node name="Hook" type="Node2D" parent="." index="8" unique_id=580762893]
 script = ExtResource("8_qek5x")
