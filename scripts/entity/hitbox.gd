@@ -37,7 +37,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _try_hit(hurtbox: Hurtbox) -> void:
 	var not_interactable: bool = not Factions.can_interact(faction, hurtbox.faction)
-	if (_has_hit and not multi_hit) or not_interactable :
+	if (_has_hit and not multi_hit) or not_interactable:
 		return
 
 	if not hurtbox.receive_hit(damage):
