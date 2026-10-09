@@ -19,21 +19,21 @@ position = Vector2(320.00003, -7.9999847)
 scale = Vector2(0.7207986, 24.95867)
 
 [node name="BasePlatform4" parent="." unique_id=1962498380 instance=ExtResource("1_pw63i")]
-position = Vector2(107.99997, -115.00001)
-scale = Vector2(-7.7041516, 1.0501568)
+position = Vector2(32, -42.000004)
+scale = Vector2(-4.752819, -1.4464645)
 
 [node name="BasePlatform5" parent="." unique_id=1221450920 instance=ExtResource("1_pw63i")]
-position = Vector2(-175, -9.999999)
+position = Vector2(-210.00002, -114.99999)
 scale = Vector2(-7.7041516, 1.0501568)
 
+[node name="Oni" parent="." unique_id=2025436759 instance=ExtResource("3_7ykc4")]
+position = Vector2(-27.000015, 121.99997)
+scale = Vector2(0.1, 0.1)
+
 [node name="Player" parent="." unique_id=1821763107 instance=ExtResource("2_pw63i")]
-position = Vector2(-253.99998, 120.99999)
+position = Vector2(-147, 123.99999)
 scale = Vector2(0.1, 0.1)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1786483409]
-position = Vector2(-90.000244, -599.99976)
-scale = Vector2(0.99999994, 0.99999994)
-
-[node name="Oni" parent="." unique_id=2025436759 instance=ExtResource("3_7ykc4")]
-position = Vector2(80.99999, 124.99999)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-150.00024, -549.99963)
+scale = Vector2(0.9999998, 0.9999998)

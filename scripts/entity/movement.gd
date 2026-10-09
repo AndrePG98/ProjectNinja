@@ -34,6 +34,10 @@ func _handle_movement(
 	body.velocity.x = move_toward(body.velocity.x, air_target, rate * delta)
 
 
+func boost(body: CharacterBody2D, force: float) -> void:
+	body.velocity += body.velocity.normalized() * force
+
+
 func _handle_jump(jumped: bool, body: CharacterBody2D) -> void:
 	if not jumped or remaining_jumps <= 0:
 		return

@@ -70,4 +70,4 @@ func _before_movement(_delta: float) -> void:
 
 
 func _after_movement(_delta: float) -> void:
-	pass
+	velocity = velocity.limit_length(movement.stats.max_speed)

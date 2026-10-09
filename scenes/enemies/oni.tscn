@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4ijsiqqpwv3m" path="res://scenes/entity/entity.tscn" id="1_aapix"]
 [ext_resource type="Texture2D" uid="uid://dakflnpg72pfm" path="res://assets/animations/enemies/walker/Enemy 010000.png" id="2_0gg1l"]
+[ext_resource type="Resource" uid="uid://cytuixth8phgc" path="res://scenes/enemies/oni_move_stats.tres" id="2_p5ikp"]
 [ext_resource type="Script" uid="uid://xjbylcd2xh37" path="res://scripts/entity/hitbox.gd" id="3_admq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5ikp"]
@@ -30,18 +31,24 @@ size = Vector2(397, 872)
 
 [node name="Entity" unique_id=1821763107 instance=ExtResource("1_aapix")]
 
+[node name="Movement" parent="." index="1" unique_id=758544907]
+stats = ExtResource("2_p5ikp")
+
 [node name="Animator" parent="." index="3" unique_id=25410526 node_paths=PackedStringArray("sprite")]
 sprite = NodePath("../AnimatedSprite2D")
 
 [node name="Hurtbox" parent="." index="4" unique_id=1494815632]
+visible = false
 faction = 1
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1915405303]
+visible = false
 position = Vector2(-23.5, -169)
 shape = SubResource("RectangleShape2D_p5ikp")
 disabled = true
 
 [node name="CollisionShape2D" parent="." index="5" unique_id=874322528]
+visible = false
 position = Vector2(-23.5, -54)
 shape = SubResource("RectangleShape2D_0gg1l")
 

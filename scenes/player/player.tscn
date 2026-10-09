@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bb4oxfdiyxfy8" path="res://scripts/player/player.gd" id="1_ugbui"]
 [ext_resource type="Texture2D" uid="uid://bghs5ltnk1pk7" path="res://assets/animations/player/faint/main_ninja_faint_spritesheet01.png" id="2_je7p5"]
 [ext_resource type="Texture2D" uid="uid://c66daik2hpp5t" path="res://assets/animations/player/idle/Main_Ninja_Idle_Test0000.png" id="2_rkbax"]
+[ext_resource type="Resource" uid="uid://bds17i8hcagum" path="res://scenes/player/player_move_stats.tres" id="3_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://810x652f3q7f" path="res://assets/animations/player/jump/Main_Ninja_Jump01.png" id="4_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bc8nea13lcfoo" path="res://assets/animations/player/run/texture.png" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://cs6t5ls764lhj" path="res://scripts/hook/hook.gd" id="8_qek5x"]
@@ -147,6 +148,9 @@ animations = [{
 script = ExtResource("1_ugbui")
 controller = NodePath("PlayerController")
 
+[node name="Movement" parent="." index="1" unique_id=758544907]
+stats = ExtResource("3_5gtgg")
+
 [node name="Health" parent="." index="2" unique_id=195962182]
 total_health = 5
 
@@ -174,4 +178,5 @@ animation = &"idle"
 
 [node name="Hook" type="Node2D" parent="." index="8" unique_id=580762893]
 script = ExtResource("8_qek5x")
+hook_length = 250.0
 metadata/_custom_type_script = "uid://cs6t5ls764lhj"

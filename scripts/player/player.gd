@@ -7,17 +7,14 @@ var _swinging: bool = false
 func _ready() -> void:
 	super._ready()
 	health.changed.connect(_on_health_changed)
+	hook.released.connect(_on_hook_release)
 
 
-func _before_movement(_delta: float) -> void:
-	hook.tick(intent.hook_pressed, intent.aim_position)
-	_swinging = hook.attached and not is_on_floor()
-
+func _before_movement(delta: float) -> void:
+	hook.tick(self, intent, intent.aim_position)
+	_swinging = hook.attached && not is_on_floor()
 	if _swinging:
-		movement.remaining_jumps = 1
-		if intent.jump_pressed:
-			hook.release()
-			_swinging = false
+		velocity *= 1.0 - hook.swing_damping * delta
 
 
 func _after_movement(_delta: float) -> void:
@@ -41,3 +38,8 @@ func _on_health_changed(prev: int, current: int) -> void:
 		sprite.modulate = Color.RED
 		var tween: Tween = create_tween()
 		tween.tween_property(sprite, "modulate", Color.WHITE, 0.15)
+
+
+func _on_hook_release() -> void:
+	movement.remaining_jumps = maxi(movement.remaining_jumps, 1)
+	movement.boost(self, hook.swing_launch)
