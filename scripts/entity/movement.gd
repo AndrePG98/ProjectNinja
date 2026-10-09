@@ -5,13 +5,11 @@ class_name Movement extends Node
 var remaining_jumps: int
 
 
-func tick(
-	delta: float, body: CharacterBody2D, direction: float, momentum: float, jumped: bool
-) -> void:
+func tick(delta: float, body: CharacterBody2D, intent: Intent, swing_force: float) -> void:
 	_reset_jumps(body)
 	_apply_gravity(delta, body)
-	_handle_jump(jumped, body)
-	_handle_movement(delta, signf(direction), momentum, body)
+	_handle_jump(intent.jump_pressed, body)
+	_handle_movement(delta, signf(intent.move_direction), swing_force, body)
 
 
 func _handle_movement(

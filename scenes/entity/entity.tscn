@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://4ijsiqqpwv3m"]
+
+[ext_resource type="Script" uid="uid://d4he3wu5iyamd" path="res://scripts/entity/entity.gd" id="1_t6or0"]
+[ext_resource type="Script" uid="uid://c4l6w6frcu66j" path="res://scripts/entity/state_machine.gd" id="2_8wy7d"]
+[ext_resource type="Script" uid="uid://dy2brmny6pe65" path="res://scripts/entity/movement.gd" id="3_acqig"]
+[ext_resource type="Script" uid="uid://du0fbi5u1kt2r" path="res://scripts/entity/movement_stats.gd" id="4_acqig"]
+[ext_resource type="Script" uid="uid://c2pph5830qsxj" path="res://scripts/entity/health.gd" id="4_mdi4j"]
+[ext_resource type="Script" uid="uid://b5r5mwh70a2vs" path="res://scripts/entity/animator.gd" id="5_et01i"]
+[ext_resource type="Script" uid="uid://bq00yw3qjxx87" path="res://scripts/entity/hurtbox.gd" id="8_et01i"]
+
+[sub_resource type="Resource" id="Resource_sa7r7"]
+script = ExtResource("4_acqig")
+metadata/_custom_type_script = "uid://du0fbi5u1kt2r"
+
+[node name="Entity" type="CharacterBody2D" unique_id=1821763107]
+collision_mask = 3
+script = ExtResource("1_t6or0")
+metadata/_custom_type_script = "uid://d4he3wu5iyamd"
+
+[node name="StateMachine" type="Node" parent="." unique_id=808193655]
+script = ExtResource("2_8wy7d")
+metadata/_custom_type_script = "uid://c4l6w6frcu66j"
+
+[node name="Movement" type="Node" parent="." unique_id=758544907]
+script = ExtResource("3_acqig")
+stats = SubResource("Resource_sa7r7")
+metadata/_custom_type_script = "uid://dy2brmny6pe65"
+
+[node name="Health" type="Node" parent="." unique_id=195962182]
+script = ExtResource("4_mdi4j")
+metadata/_custom_type_script = "uid://c2pph5830qsxj"
+
+[node name="Animator" type="Node" parent="." unique_id=25410526 node_paths=PackedStringArray("sprite", "body")]
+script = ExtResource("5_et01i")
+sprite = NodePath("")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://b5r5mwh70a2vs"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1494815632]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("8_et01i")
+metadata/_custom_type_script = "uid://bq00yw3qjxx87"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1915405303]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=874322528]
