@@ -15,6 +15,8 @@ var rope_length: float = 0.0
 var attached: bool = false
 var _aim_to: Vector2 = Vector2.ZERO
 
+@onready var line_2d: Line2D = $Line2D
+
 
 func _ready() -> void:
 	timer = Timer.new()
@@ -23,10 +25,14 @@ func _ready() -> void:
 	add_child(timer)
 
 
+func _process(_delta: float) -> void:
+	if attached and line_2d.get_point_count() == 2:
+		line_2d.set_point_position(1, line_2d.to_local(anchor_point))
+
+
 func tick(body: Entity, intent: Intent, aim_target: Vector2) -> void:
 	_aim_to = Vector2.ZERO
 	if not timer.is_stopped() or (not attached and body.is_on_floor()):
-		queue_redraw()
 		return
 
 	if attached and (intent.hook_released or intent.jump_pressed or body.is_on_floor()):
@@ -34,13 +40,12 @@ func tick(body: Entity, intent: Intent, aim_target: Vector2) -> void:
 	elif intent.hook_pressed and not attached:
 		_try_attach(aim_target)
 
-	queue_redraw()
-
 
 func release() -> void:
 	if not attached:
 		return
 
+	line_2d.clear_points()
 	attached = false
 	anchor_point = Vector2.ZERO
 	rope_length = 0
@@ -81,12 +86,6 @@ func _try_attach(aim_target: Vector2) -> void:
 	attached = true
 	anchor_point = result.position
 	rope_length = (anchor_point - from).length()
-
-
-func _draw() -> void:
-	if anchor_point:
-		draw_line(Vector2.ZERO, to_local(anchor_point), Color.RED, 2.0)
-		return
-
-	if _aim_to:
-		draw_line(Vector2.ZERO, to_local(_aim_to), Color.RED, 2.0)
+	line_2d.clear_points()
+	line_2d.add_point(Vector2.ZERO, 0)
+	line_2d.add_point(line_2d.to_local(anchor_point), 1)
