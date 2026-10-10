@@ -1,8 +1,12 @@
 class_name Hook extends Node2D
 
+signal released
+
 @export var hook_length: float = 200.0
 @export var hook_cooldown: float = 1.0
 @export var swing_force: float = 500.0
+@export var swing_launch: float = 100.0
+@export var swing_damping: float = 0.5
 @export_flags_2d_physics var hook_mask: int = 2
 
 var timer: Timer
@@ -19,33 +23,36 @@ func _ready() -> void:
 	add_child(timer)
 
 
-func tick(fire_pressed: bool, aim_target: Vector2) -> void:
+func tick(body: Entity, intent: Intent, aim_target: Vector2) -> void:
 	_aim_to = Vector2.ZERO
-	if not fire_pressed or not timer.is_stopped():
+	if not timer.is_stopped() or (not attached and body.is_on_floor()):
 		queue_redraw()
 		return
 
-	if attached:
+	if attached and (intent.hook_released or intent.jump_pressed or body.is_on_floor()):
 		release()
-		queue_redraw()
-		return
+	elif intent.hook_pressed and not attached:
+		_try_attach(aim_target)
 
-	_try_attach(aim_target)
 	queue_redraw()
 
 
 func release() -> void:
-	attached = false
-	anchor_point = Vector2.ZERO
-	rope_length = 0
-	timer.start(hook_cooldown)
-
-
-func constraint(body: CharacterBody2D) -> void:
 	if not attached:
 		return
 
-	var to_anchor: Vector2 = anchor_point - body.global_position
+	attached = false
+	anchor_point = Vector2.ZERO
+	rope_length = 0
+	released.emit()
+	timer.start(hook_cooldown)
+
+
+func constraint(body: Entity) -> void:
+	if not attached:
+		return
+
+	var to_anchor: Vector2 = anchor_point - global_position
 	var dir: Vector2 = to_anchor.normalized()
 	var distance: float = to_anchor.length()
 	if distance <= rope_length:
@@ -54,7 +61,7 @@ func constraint(body: CharacterBody2D) -> void:
 	var s: float = body.velocity.dot(dir)
 	if s < 0.0:
 		body.velocity -= dir * s
-	# body.global_position += dir * (distance - rope_length)
+	body.global_position += dir * (distance - rope_length)
 
 
 func _try_attach(aim_target: Vector2) -> void:

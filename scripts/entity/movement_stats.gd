@@ -3,6 +3,7 @@ class_name MovementStats extends Resource
 @export_group("Ground")
 ## Horizontal speed (px/s) while on the floor.
 @export var base_speed: float = 200.0
+@export var max_speed: float = 500.0
 
 @export_group("Jumping")
 ## Initial vertical velocity (px/s) of a jump. Negative is up

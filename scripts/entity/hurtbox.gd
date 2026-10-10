@@ -3,7 +3,7 @@ class_name Hurtbox extends Area2D
 signal hit_received(damage: int)
 signal invincibility_changed(active: bool)
 
-@export var faction: Factions.Faction
+@export var faction: Factions.Faction = Factions.Faction.NEUTRAL
 @export var invincibility_time: float = 1.0
 
 var is_invincible: bool = false

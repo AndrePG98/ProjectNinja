@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bter6icst3att"]
+
+[ext_resource type="PackedScene" uid="uid://4ijsiqqpwv3m" path="res://scenes/entity/entity.tscn" id="1_aapix"]
+[ext_resource type="Texture2D" uid="uid://dakflnpg72pfm" path="res://assets/animations/enemies/walker/Enemy 010000.png" id="2_0gg1l"]
+[ext_resource type="Resource" uid="uid://cytuixth8phgc" path="res://scenes/enemies/oni_move_stats.tres" id="2_p5ikp"]
+[ext_resource type="Script" uid="uid://xjbylcd2xh37" path="res://scripts/entity/hitbox.gd" id="3_admq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5ikp"]
+size = Vector2(397, 872)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gg1l"]
+size = Vector2(397, 1102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_admq0"]
+atlas = ExtResource("2_0gg1l")
+region = Rect2(0, 0, 1536, 1536)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ostoq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_admq0")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0usj"]
+size = Vector2(397, 872)
+
+[node name="Entity" unique_id=1821763107 instance=ExtResource("1_aapix")]
+
+[node name="Movement" parent="." index="1" unique_id=758544907]
+stats = ExtResource("2_p5ikp")
+
+[node name="Animator" parent="." index="3" unique_id=25410526 node_paths=PackedStringArray("sprite")]
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="Hurtbox" parent="." index="4" unique_id=1494815632]
+visible = false
+faction = 1
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1915405303]
+visible = false
+position = Vector2(-23.5, -169)
+shape = SubResource("RectangleShape2D_p5ikp")
+disabled = true
+
+[node name="CollisionShape2D" parent="." index="5" unique_id=874322528]
+visible = false
+position = Vector2(-23.5, -54)
+shape = SubResource("RectangleShape2D_0gg1l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="6" unique_id=731135007]
+sprite_frames = SubResource("SpriteFrames_ostoq")
+animation = &"idle"
+
+[node name="Hitbox" type="Area2D" parent="." index="7" unique_id=894383579]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_admq0")
+faction = 1
+multi_hit = true
+metadata/_custom_type_script = "uid://xjbylcd2xh37"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0" unique_id=1203043946]
+position = Vector2(-23.5, -169)
+shape = SubResource("RectangleShape2D_u0usj")

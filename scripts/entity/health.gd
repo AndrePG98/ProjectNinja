@@ -31,7 +31,6 @@ func _change(amount: int) -> void:
 
 
 func damage(amount: int) -> void:
-	print("Took damage")
 	_change(-amount)
 
 

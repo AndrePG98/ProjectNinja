@@ -1,19 +1,10 @@
 [gd_scene format=3 uid="uid://cd3wvdm5xl80h"]
 
 [ext_resource type="PackedScene" uid="uid://j1gtngunhv0f" path="res://scenes/world/platform/base_platform.tscn" id="1_pw63i"]
-[ext_resource type="PackedScene" uid="uid://cyavhuvlv7vap" path="res://scenes/player/player.tscn" id="2_pw63i"]
-[ext_resource type="Texture2D" uid="uid://dcdaj331le8b1" path="res://icon.svg" id="3_7ykc4"]
-[ext_resource type="Script" uid="uid://xjbylcd2xh37" path="res://scripts/entity/hitbox.gd" id="4_pu3yx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_loq3h"]
-size = Vector2(24, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajtct"]
-size = Vector2(24, 24)
+[ext_resource type="PackedScene" uid="uid://b0fpfdsna7wad" path="res://scenes/player/player.tscn" id="2_pw63i"]
+[ext_resource type="PackedScene" uid="uid://bter6icst3att" path="res://scenes/enemies/oni.tscn" id="3_7ykc4"]
 
 [node name="MainScene" type="Node2D" unique_id=1573385340]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1786483409]
 
 [node name="BasePlatform" parent="." unique_id=215182763 instance=ExtResource("1_pw63i")]
 position = Vector2(0, 184)
@@ -28,34 +19,21 @@ position = Vector2(320.00003, -7.9999847)
 scale = Vector2(0.7207986, 24.95867)
 
 [node name="BasePlatform4" parent="." unique_id=1962498380 instance=ExtResource("1_pw63i")]
-position = Vector2(-203, -118.00001)
-scale = Vector2(-7.7041516, 1.0501568)
+position = Vector2(32, -42.000004)
+scale = Vector2(-4.752819, -1.4464645)
 
 [node name="BasePlatform5" parent="." unique_id=1221450920 instance=ExtResource("1_pw63i")]
-position = Vector2(164.99997, -34.000015)
+position = Vector2(-210.00002, -114.99999)
 scale = Vector2(-7.7041516, 1.0501568)
 
-[node name="Player" parent="." unique_id=2067381703 instance=ExtResource("2_pw63i")]
-position = Vector2(-223, 103)
-scale = Vector2(0.12, 0.15)
+[node name="Oni" parent="." unique_id=2025436759 instance=ExtResource("3_7ykc4")]
+position = Vector2(-27.000015, 121.99997)
+scale = Vector2(0.1, 0.1)
 
-[node name="Spike" type="StaticBody2D" parent="." unique_id=734509173]
-collision_layer = 2
-collision_mask = 5
+[node name="Player" parent="." unique_id=1821763107 instance=ExtResource("2_pw63i")]
+position = Vector2(-147, 123.99999)
+scale = Vector2(0.1, 0.1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Spike" unique_id=302102966]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_7ykc4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike" unique_id=366599261]
-shape = SubResource("RectangleShape2D_loq3h")
-
-[node name="Hitbox" type="Area2D" parent="Spike" unique_id=713420125]
-collision_layer = 8
-collision_mask = 4
-script = ExtResource("4_pu3yx")
-faction = 1
-metadata/_custom_type_script = "uid://xjbylcd2xh37"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike/Hitbox" unique_id=1957110198]
-shape = SubResource("RectangleShape2D_ajtct")
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1786483409]
+position = Vector2(-150.00024, -549.99963)
+scale = Vector2(0.9999998, 0.9999998)
