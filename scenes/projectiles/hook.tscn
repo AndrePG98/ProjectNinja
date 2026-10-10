@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://de4h7e4stdt2m"]
+
+[ext_resource type="Script" uid="uid://cs6t5ls764lhj" path="res://scripts/hook/hook.gd" id="1_w8bns"]
+[ext_resource type="Texture2D" uid="uid://dxujjgk6fg2jb" path="res://assets/textures/rope/rope_v2.png" id="2_1kbep"]
+
+[node name="Hook" type="Node2D" unique_id=375065581]
+script = ExtResource("1_w8bns")
+hook_length = 400.0
+hook_cooldown = 0.5
+swing_launch = 200.0
+metadata/_custom_type_script = "uid://cs6t5ls764lhj"
+
+[node name="Line2D" type="Line2D" parent="." unique_id=264785299]
+texture_repeat = 2
+width = 50.0
+texture = ExtResource("2_1kbep")
+texture_mode = 1

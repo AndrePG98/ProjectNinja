@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://bds17i8hcagum" path="res://scenes/player/player_move_stats.tres" id="3_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://810x652f3q7f" path="res://assets/animations/player/jump/Main_Ninja_Jump01.png" id="4_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bc8nea13lcfoo" path="res://assets/animations/player/run/texture.png" id="4_yw30f"]
-[ext_resource type="Script" uid="uid://cs6t5ls764lhj" path="res://scripts/hook/hook.gd" id="8_qek5x"]
+[ext_resource type="PackedScene" uid="uid://de4h7e4stdt2m" path="res://scenes/projectiles/hook.tscn" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://blb5nlsdfremr" path="res://scripts/player/player_controller.gd" id="9_h17s1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p47bc"]
@@ -176,7 +176,5 @@ metadata/_custom_type_script = "uid://blb5nlsdfremr"
 sprite_frames = SubResource("SpriteFrames_ostoq")
 animation = &"idle"
 
-[node name="Hook" type="Node2D" parent="." index="8" unique_id=580762893]
-script = ExtResource("8_qek5x")
-hook_length = 250.0
-metadata/_custom_type_script = "uid://cs6t5ls764lhj"
+[node name="Hook" parent="." index="8" unique_id=375065581 instance=ExtResource("9_5gtgg")]
+position = Vector2(131, -438)
